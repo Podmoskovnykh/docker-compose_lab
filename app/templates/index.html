@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TODO List</title>
+</head>
+<body>
+    <h2>Ваши задачи</h2>
+
+    <form method="post">
+        <input type="text" name="task" placeholder="Добавить новую задачу" required />
+        <button type="submit">Добавить</button>
+    </form>
+
+    <ul>
+        {% for task in tasks %}
+            <li style="text-decoration: {% if task[2] %}line-through{% endif %};">
+                {{ task[1] }}
+                {% if not task[2] %}
+                    <a href="/complete/{{ task[0] }}">[Выполнено]</a>
+                {% endif %}
+                <a href="/delete/{{ task[0] }}">[Удалить]</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
